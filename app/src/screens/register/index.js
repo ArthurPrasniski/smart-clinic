@@ -22,6 +22,18 @@ export const RegisterScreen = () => {
           </Box>
           <InputPrimary />
         </Box>
+        <Box mt="20px">
+          <Box mb="10px">
+            <Text bold> Email</Text>
+          </Box>
+          <InputPrimary />
+        </Box>
+        <Box mt="20px" width="20px">
+          <Box mb="10px">
+            <Text bold> Selecione a data do atendimento</Text>
+          </Box>
+          <InputPrimary />
+        </Box>
       </SafeAreaView>
     </Box>
   );
