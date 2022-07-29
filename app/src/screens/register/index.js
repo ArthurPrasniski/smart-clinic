@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import { Box, Text, TextArea } from "native-base";
 import { InputPrimary } from "../../components/inputs/input";
 import { Logo } from "../../components/image";
@@ -14,17 +14,70 @@ import { SecondaryButton } from "../../components/buttons/button-secondary";
 import { db } from "../../config";
 import { collection, addDoc } from "firebase/firestore";
 import DateTimePicker from "@react-native-community/datetimepicker";
+import axios from "axios";
 
 export const RegisterScreen = ({ navigation }) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [date, setDate] = useState((new Date()));
+  const [date, setDate] = useState(new Date());
   const [description, setDescription] = useState("");
   const [mode, setMode] = useState("date");
   const [open, setOpen] = useState(false);
   const [text, setText] = useState("");
 
   const usersCollectionRef = collection(db, "Scheduling");
+
+  // const handleSubmit = useCallback(
+  //   (e) => {
+  //     api
+  //       .post(
+  //         "/send-email",
+  //         {
+  //           name,
+  //           email,
+  //           date,
+  //           description,
+  //         },
+  //         {
+  //           headers: {
+  //             "Content-Type": "application/json",
+  //             Accept: "application/json",
+  //           },
+  //         }
+  //       )
+  //       .then((response) => {
+  //         console.log(response);
+  //         alert("Email de agendamento enviado com sucesso!");
+  //       })
+  //       .catch((error) => {
+  //         console.log(error);
+  //         alert("Email de agendamento não enviado!");
+  //       });
+  //   },
+  //   [name, email, date, description]
+  // );
+  function create(name, email, date, description) {
+    // eslint-disable-next-line no-async-promise-executor
+    return new Promise((resolve, reject) => {
+      return axios
+        .post(
+          `https://send-email-scheduling.herokuapp.com/send-email`,
+          { name, email, date, description },
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Accept: "application/json",
+            },
+          }
+        )
+        .then((res) => {
+          resolve(res);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+  }
 
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate || date;
@@ -60,9 +113,14 @@ export const RegisterScreen = ({ navigation }) => {
         email: email || null,
         date: date || null,
         description: description || null,
-      }, 
+      },
       navigation.navigate("Home")
     );
+    try {
+      create(name, email, date, description);
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   return (
@@ -104,10 +162,7 @@ export const RegisterScreen = ({ navigation }) => {
               </Box>
               <Box flexDirection="row" alignItems="center">
                 <Box width="220px" mr="10px">
-                  <InputPrimary
-                    value={text}
-                    onChangeText={handleChangeDate}
-                  />
+                  <InputPrimary value={text} onChangeText={handleChangeDate} />
                 </Box>
                 <CalendarButton onPress={() => showMode("date")} />
                 {open && (

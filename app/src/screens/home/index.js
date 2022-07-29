@@ -20,10 +20,6 @@ export const Home = ({ navigation }) => {
     getUsers(scheduling);
   }, []);
 
-  // const date = new Date(scheduling.date);
-  // let dateFormated = new Intl.DateTimeFormat("pt-BR").format(date);
-  // console.log(dateFormated)
-
   return (
     <SafeAreaView>
       <Box mt="50px" alignItems="center">
