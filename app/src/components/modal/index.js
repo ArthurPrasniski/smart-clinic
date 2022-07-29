@@ -2,7 +2,7 @@ import React from "react";
 import { Modal, Text, Box } from "native-base";
 import { CloseButton } from "../../components/buttons/button-close";
 
-export const ModalDetails = ({ isOpen, setIsOpen }) => {
+export const ModalDetails = ({ isOpen, setIsOpen, name, date, description }) => {
   return (
     <Modal isOpen={isOpen}>
       <Modal.Content width="300px" height="400px" pt="20px" pl="20px" pr="20px">
@@ -12,7 +12,7 @@ export const ModalDetails = ({ isOpen, setIsOpen }) => {
           alignItems="center"
         >
           <Text bold fontSize="md">
-            Agendamento #1
+            Agendamento
           </Text>
           <CloseButton
             onPress={() => {
@@ -26,10 +26,10 @@ export const ModalDetails = ({ isOpen, setIsOpen }) => {
           alignItems="center"
         >
           <Text bold fontSize="md">
-            Jose Ipsum
+            {name}
           </Text>
           <Text bold fontSize="md">
-            22/02/2022
+            {date}
           </Text>
         </Box>
         <Box mt="30px">
@@ -39,8 +39,7 @@ export const ModalDetails = ({ isOpen, setIsOpen }) => {
         </Box>
         <Box mt="12px">
           <Text>
-            Descrição da consulta contando os sintomas do paciente e suas dores
-            e afins.
+           {description}
           </Text>
         </Box>
       </Modal.Content>

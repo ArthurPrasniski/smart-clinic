@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Box, Text, Button } from "native-base";
 import { ModalDetails } from "../../components/modal";
 
-export const Card = () => {
+export const Card = ({ name, email, date, description }) => {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <Box
@@ -23,27 +23,24 @@ export const Card = () => {
           mt="-15px"
         >
           <Text bold>
-            Agendamento {""}
-            <Text bold color="#1A0DEA">
-              #1
-            </Text>
+            Agendamento
           </Text>
           <Button variant="link" onPress={() => setIsOpen(true)}>
             Detalhes
           </Button>
         </Box>
-        <ModalDetails isOpen={isOpen} setIsOpen={setIsOpen}/>
+        <ModalDetails isOpen={isOpen} setIsOpen={setIsOpen} name={name} date={date} description={description}/>
         <Text bold>
           Nome do paciente: {""}
-          <Text>Jose ipsum</Text>
+          <Text>{name}</Text>
         </Text>
         <Text bold>
           Email: {""}
-          <Text>joseipsum@gmail.com</Text>
+          <Text>{email}</Text>
         </Text>
         <Text>
           Consulta agendada para {""}
-          <Text bold>22/02/2022</Text>
+          <Text bold>{date}</Text>
         </Text>
       </Box>
     </Box>
