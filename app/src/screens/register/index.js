@@ -26,36 +26,7 @@ export const RegisterScreen = ({ navigation }) => {
   const [text, setText] = useState("");
 
   const usersCollectionRef = collection(db, "Scheduling");
-
-  // const handleSubmit = useCallback(
-  //   (e) => {
-  //     api
-  //       .post(
-  //         "/send-email",
-  //         {
-  //           name,
-  //           email,
-  //           date,
-  //           description,
-  //         },
-  //         {
-  //           headers: {
-  //             "Content-Type": "application/json",
-  //             Accept: "application/json",
-  //           },
-  //         }
-  //       )
-  //       .then((response) => {
-  //         console.log(response);
-  //         alert("Email de agendamento enviado com sucesso!");
-  //       })
-  //       .catch((error) => {
-  //         console.log(error);
-  //         alert("Email de agendamento não enviado!");
-  //       });
-  //   },
-  //   [name, email, date, description]
-  // );
+  
   function create(name, email, date, description) {
     // eslint-disable-next-line no-async-promise-executor
     return new Promise((resolve, reject) => {
