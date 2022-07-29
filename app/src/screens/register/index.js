@@ -26,7 +26,7 @@ export const RegisterScreen = ({ navigation }) => {
   const [text, setText] = useState("");
 
   const usersCollectionRef = collection(db, "Scheduling");
-  
+
   function create(name, email, date, description) {
     // eslint-disable-next-line no-async-promise-executor
     return new Promise((resolve, reject) => {
@@ -89,8 +89,10 @@ export const RegisterScreen = ({ navigation }) => {
     );
     try {
       create(name, email, date, description);
+      alert('Email de agendamento enviado com sucesso!')
     } catch (e) {
       console.log(e);
+      alert('Email de agendamento não foi enviado!')
     }
   };
 

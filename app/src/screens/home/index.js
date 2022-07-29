@@ -18,7 +18,7 @@ export const Home = ({ navigation }) => {
       setScheduling(data.docs.map((doc) => ({ ...doc.data([]), id: doc.id })));
     };
     getUsers(scheduling);
-  }, []);
+  }, [scheduling]);
 
   return (
     <SafeAreaView>
