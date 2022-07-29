@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { Box, Text, Button } from "native-base";
+import { ModalDetails } from "../../components/modal";
 
 export const Card = () => {
+  const [isOpen, setIsOpen] = useState(false);
   return (
     <Box
       w="300px"
@@ -13,18 +15,24 @@ export const Card = () => {
       borderColor="#1A0DEA"
     >
       <Box paddingLeft="15px" paddingTop="9px">
-        <Box flexDirection="row" alignItems='center' justifyContent='space-between' mb='-9px' mt='-15px'>
+        <Box
+          flexDirection="row"
+          alignItems="center"
+          justifyContent="space-between"
+          mb="-9px"
+          mt="-15px"
+        >
           <Text bold>
             Agendamento {""}
             <Text bold color="#1A0DEA">
               #1
             </Text>
           </Text>
-          <Button variant="link">
+          <Button variant="link" onPress={() => setIsOpen(true)}>
             Detalhes
           </Button>
         </Box>
-
+        <ModalDetails isOpen={isOpen} setIsOpen={setIsOpen}/>
         <Text bold>
           Nome do paciente: {""}
           <Text>Jose ipsum</Text>

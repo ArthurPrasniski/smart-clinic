@@ -7,7 +7,7 @@ import { CalendarButton } from "../../components/buttons/button-calendar";
 import { PrimaryButton } from "../../components/buttons/button-primary";
 import { SecondaryButton } from "../../components/buttons/button-secondary";
 
-export const RegisterScreen = () => {
+export const RegisterScreen = ({navigation}) => {
   return (
     <Box padding="45">
       <SafeAreaView>
@@ -62,13 +62,13 @@ export const RegisterScreen = () => {
             />
           </Box>
           <Box alignItems="center" mt="25px">
-            <PrimaryButton>
+            <PrimaryButton width='220px'>
               <Text bold color="#FFFFFF" fontSize="xl">
                 Salvar
               </Text>
             </PrimaryButton>
             <Box mt="15px">
-              <SecondaryButton>
+              <SecondaryButton onPress={() => navigation.navigate("Home")}>
                 <Text bold fontSize="xl">
                   Voltar
                 </Text>
